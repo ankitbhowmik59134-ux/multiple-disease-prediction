@@ -14,9 +14,19 @@ This is an educational demo. It is **not** a medical diagnosis tool.
 
 Java 17+ is required (Java 24 works). Maven Wrapper is included.
 
+**Windows (PowerShell or Command Prompt):**
+
+```bat
+mvnw.cmd test
+mvnw.cmd spring-boot:run
+```
+
+**macOS / Linux:**
+
 ```bash
-.\mvnw.cmd test
-.\mvnw.cmd spring-boot:run
+chmod +x mvnw
+./mvnw test
+./mvnw spring-boot:run
 ```
 
 Then open [http://localhost:8080](http://localhost:8080).
@@ -42,7 +52,7 @@ docker run --rm -p 8080:8080 -e PORT=8080 mdps
 
 ## Verify
 
-1. **Tests:** `.\mvnw.cmd test` — logistic regression should separate a simple dataset; the API should list 3 diseases and accept a diabetes payload.
+1. **Tests:** `mvnw.cmd test` (Windows) or `./mvnw test` (macOS/Linux) — logistic regression should separate a simple dataset; the API should list 3 diseases and accept a diabetes payload.
 2. **Home page:** three cards with hold-out accuracy (typically ~80%+ on the generated training data).
 3. **UI flow:** open Diabetes → submit the prefilled values → you should see a probability and a Low / Moderate / High risk label.
 4. **API:**
