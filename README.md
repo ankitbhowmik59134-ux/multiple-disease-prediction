@@ -10,7 +10,11 @@ Models:
 
 This is an educational demo. It is **not** a medical diagnosis tool.
 
-## Run
+**Live demo:** [https://multiple-disease-prediction-s657.onrender.com](https://multiple-disease-prediction-s657.onrender.com)
+
+The first load can take a minute if the free Render instance was asleep.
+
+## Run locally
 
 Java 17+ is required (Java 24 works). Maven Wrapper is included.
 
@@ -41,7 +45,7 @@ Use a container host instead. The repo includes a `Dockerfile`.
 
 1. Open [https://render.com/deploy?repo=https://github.com/ankitbhowmik59134-ux/multiple-disease-prediction](https://render.com/deploy?repo=https://github.com/ankitbhowmik59134-ux/multiple-disease-prediction)
 2. Sign in with GitHub and create the web service.
-3. Wait for the Docker build, then open the `onrender.com` URL.
+3. Wait for the Docker build. This project’s live URL is [https://multiple-disease-prediction-s657.onrender.com](https://multiple-disease-prediction-s657.onrender.com).
 
 Local container check:
 
