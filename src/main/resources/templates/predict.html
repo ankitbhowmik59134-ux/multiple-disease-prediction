@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="'Predict ' + ${disease.name}">Predict</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header class="top">
+    <a class="brand" href="/">MDPS</a>
+    <p>Educational machine-learning demo — not a medical diagnosis.</p>
+</header>
+<main>
+    <a class="back" href="/">← All models</a>
+    <h1 th:text="${disease.name}">Disease</h1>
+    <p th:text="${disease.description}">Description</p>
+    <p class="metric">Trained accuracy: <strong th:text="${#numbers.formatDecimal(disease.metrics.accuracyPercent(), 1, 1)} + '%'">90%</strong></p>
+    <form method="post" th:action="@{/predict/{id}(id=${disease.id})}" class="form-grid">
+        <label th:each="feature : ${disease.features}">
+            <span th:text="${feature.label}">Feature</span>
+            <small th:text="${feature.hint}">hint</small>
+            <input type="number"
+                   th:name="${feature.id}"
+                   th:min="${feature.min}"
+                   th:max="${feature.max}"
+                   th:step="${feature.step}"
+                   th:value="${values[feature.id]}"
+                   required>
+        </label>
+        <button class="button" type="submit">Run prediction</button>
+    </form>
+</main>
+</body>
+</html>

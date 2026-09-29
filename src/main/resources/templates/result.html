@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="'Result — ' + ${disease.name}">Result</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header class="top">
+    <a class="brand" href="/">MDPS</a>
+    <p>Educational machine-learning demo — not a medical diagnosis.</p>
+</header>
+<main>
+    <a class="back" th:href="@{/predict/{id}(id=${disease.id})}">← Edit inputs</a>
+    <section class="result" th:classappend="${result.positive} ? ' high' : ' low'">
+        <h1 th:text="${disease.name}">Disease</h1>
+        <p class="risk" th:text="${result.riskLabel()} + ' risk'">Low risk</p>
+        <p>Predicted probability of a positive class: <strong th:text="${result.probabilityPercent()} + '%'">12%</strong></p>
+        <p th:text="${result.positive} ? 'The model classifies this profile as higher risk.' : 'The model classifies this profile as lower risk.'">outcome</p>
+        <p class="metric">Model hold-out accuracy: <strong th:text="${#numbers.formatDecimal(result.modelMetrics.accuracyPercent(), 1, 1)} + '%'">90%</strong></p>
+    </section>
+    <h2>Submitted features</h2>
+    <ul class="values">
+        <li th:each="feature : ${disease.features}">
+            <span th:text="${feature.label}">Feature</span>
+            <strong th:text="${values[feature.id]}">0</strong>
+        </li>
+    </ul>
+</main>
+</body>
+</html>

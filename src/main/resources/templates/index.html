@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multiple Disease Prediction System</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<header class="top">
+    <a class="brand" href="/">MDPS</a>
+    <p>Educational machine-learning demo — not a medical diagnosis.</p>
+</header>
+<main>
+    <section class="hero">
+        <h1>Multiple Disease Prediction System</h1>
+        <p>Java logistic-regression models for diabetes, heart disease, and Parkinson’s. Enter clinical or voice features to get a risk estimate and the model’s hold-out accuracy.</p>
+    </section>
+    <section class="cards">
+        <article class="card" th:each="item : ${models}">
+            <h2 th:text="${item.name}">Disease</h2>
+            <p th:text="${item.description}">Description</p>
+            <p class="metric">Hold-out accuracy: <strong th:text="${#numbers.formatDecimal(item.metrics.accuracyPercent(), 1, 1)} + '%'">90%</strong></p>
+            <a class="button" th:href="@{/predict/{id}(id=${item.id})}">Predict</a>
+        </article>
+    </section>
+</main>
+</body>
+</html>
