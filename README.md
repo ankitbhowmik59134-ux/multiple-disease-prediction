@@ -21,6 +21,25 @@ Java 17+ is required (Java 24 works). Maven Wrapper is included.
 
 Then open [http://localhost:8080](http://localhost:8080).
 
+## Deploy
+
+This is a **Java Spring Boot** process, so it cannot run on Vercel (Vercel hosts static sites and short-lived serverless functions, not a JVM web server).
+
+Use a container host instead. The repo includes a `Dockerfile`.
+
+### Render (recommended)
+
+1. Open [https://render.com/deploy?repo=https://github.com/ankitbhowmik59134-ux/multiple-disease-prediction](https://render.com/deploy?repo=https://github.com/ankitbhowmik59134-ux/multiple-disease-prediction)
+2. Sign in with GitHub and create the web service.
+3. Wait for the Docker build, then open the `onrender.com` URL.
+
+Local container check:
+
+```bash
+docker build -t mdps .
+docker run --rm -p 8080:8080 -e PORT=8080 mdps
+```
+
 ## Verify
 
 1. **Tests:** `.\mvnw.cmd test` — logistic regression should separate a simple dataset; the API should list 3 diseases and accept a diabetes payload.

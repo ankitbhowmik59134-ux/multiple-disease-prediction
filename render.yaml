@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: multiple-disease-prediction
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: JAVA_TOOL_OPTIONS
+        value: -XX:MaxRAMPercentage=75.0
